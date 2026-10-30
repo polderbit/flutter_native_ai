@@ -59,7 +59,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.google.mlkit:genai-prompt:1.0.0-beta4")
+    implementation("com.google.mlkit:genai-prompt:1.0.0-beta5")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
