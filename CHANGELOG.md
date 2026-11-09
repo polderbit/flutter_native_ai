@@ -1,3 +1,11 @@
+## 0.5.5
+
+- Updates the Android ML Kit Prompt API dependency
+    (`com.google.mlkit:genai-prompt`) from 1.0.0-beta4 to 1.0.0-beta5.
+- Regenerates the platform channel bindings with Pigeon 29.1.1. No public
+    Dart API or channel change.
+- Updates the example app to AGP 9.5.0 and Gradle 9.8.2.
+
 ## 0.5.4
 
 - The Android plugin no longer pins its own Android Gradle Plugin and Kotlin
