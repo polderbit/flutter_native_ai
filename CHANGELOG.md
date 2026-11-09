@@ -4,6 +4,8 @@
     (`com.google.mlkit:genai-prompt`) from 1.0.0-beta4 to 1.0.0-beta5.
 - Regenerates the platform channel bindings with Pigeon 29.1.1. No public
     Dart API or channel change.
+- Points the homepage, repository, and issue tracker URLs to the `polderbit`
+    GitHub organization.
 - Updates the example app to AGP 9.5.0 and Gradle 9.8.2.
 
 ## 0.5.4
