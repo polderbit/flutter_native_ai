@@ -6,7 +6,7 @@
     Dart API or channel change.
 - Points the homepage, repository, and issue tracker URLs to the `polderbit`
     GitHub organization.
-- Updates the example app to AGP 9.5.0 and Gradle 9.8.2.
+- Updates the example app to AGP 9.5.1 and Gradle 9.8.2.
 
 ## 0.5.4
 
