@@ -49,7 +49,9 @@ The generated Swift file goes to `darwin/flutter_native_ai/Sources/flutter_nativ
 
 **Host methods are `@async`.** Since Pigeon 28, `@async` generates `suspend` (Kotlin) and `async throws` (Swift) signatures, and both bridges implement those directly: `override suspend fun` in `OnDeviceAiBridge.kt` and `func … async throws` in `OnDeviceAiBridge.swift`. Return values are returned; failures are thrown as `FlutterError` (Kotlin) or `PigeonError` (Swift) with the error codes `_mapPlatformException` expects. The generated wrappers dispatch each call on `CoroutineScope(Dispatchers.Main).launch` (Kotlin) and `Task { @MainActor in … }` (Swift). On Kotlin the body starts on the main thread and leaves it at the first suspension. On Swift only the wrapper is `@MainActor`: the bridge methods are nonisolated `async`, so their bodies run on the generic executor from entry and must be treated as concurrent. Shared Swift bridge state is therefore guarded by locks; keep that synchronization when adding state.
 
-**Known Pigeon quirk:** Pigeon emits `open fun` modifiers in the generated Kotlin event-channel wrapper. The local lint configuration rejects `open fun`. Remove those modifiers from the checked-in Kotlin binding after regeneration.
+**Known Pigeon quirk:** Older Pigeon versions emitted `open fun` modifiers in the generated Kotlin event-channel wrapper, which the local lint configuration rejects. Pigeon 29.1.1 (the minimum in `pubspec.yaml`) does not; if a regeneration reintroduces them, remove them from the checked-in Kotlin binding.
+
+Since Pigeon 29.1, each event stream's `register` returns a typed `<Name>EventChannel` whose `setStreamHandler(null)` unregisters the handler. Both bridges currently ignore the return value.
 
 ## Platform Notes
 
@@ -126,7 +128,7 @@ Never use auto-generated names like `username-random-words`. Always call `rename
 
 ### Adding a new API method
 1. Add the method to the `@HostApi` class in `pigeons/on_device_ai.dart`.
-2. Regenerate bindings (see above) and remove `open fun` from the Kotlin output.
+2. Regenerate bindings (see above) and check the Kotlin output has no `open fun`.
 3. Implement the method in `OnDeviceAiBridge.swift` and `OnDeviceAiBridge.kt`.
 4. Expose the method through `OnDeviceAiSession` or `OnDeviceAi` in `on_device_ai_service.dart`.
 5. Export any new public types from `lib/flutter_native_ai.dart`.
