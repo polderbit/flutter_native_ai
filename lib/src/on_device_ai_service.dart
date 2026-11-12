@@ -266,12 +266,9 @@ OnDeviceAiException _mapPlatformException(PlatformException e) {
 class OnDeviceAiSession {
   OnDeviceAiSession._({
     required generated.OnDeviceAiHostApi hostApi,
-    required Stream<generated.LocalAiStreamChunkMessage> Function()
-    generationStream,
-    required String session,
-  }) : _api = hostApi,
-       _generationStream = generationStream,
-       _session = session;
+    required this._generationStream,
+    required this._session,
+  }) : _api = hostApi;
 
   final generated.OnDeviceAiHostApi _api;
   final Stream<generated.LocalAiStreamChunkMessage> Function()
