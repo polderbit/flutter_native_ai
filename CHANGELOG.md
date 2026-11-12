@@ -1,3 +1,14 @@
+## 0.5.6
+
+- Raises the minimum supported SDK to Flutter 3.44 / Dart 3.12. The Android
+    plugin builds with built-in Kotlin and applies no Kotlin Gradle plugin,
+    which Flutter supports from 3.44. This replaces the AGP 8.9.1 floor
+    stated in 0.5.4: apps need AGP 9 or later.
+- Regenerates the platform channel bindings with Pigeon 30.0.2. No public
+    Dart API or channel change.
+- Fixes analyzer infos reported by Flutter 3.50.
+- Migrates the example app to `package:material_ui`.
+
 ## 0.5.5
 
 - Updates the Android ML Kit Prompt API dependency
